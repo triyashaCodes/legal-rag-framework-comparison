@@ -26,8 +26,7 @@ legal-rag-framework-comparison/
 │   └── vectorstores/      # Generated vector stores
 ├── figures/                # Generated figures (PDF and PNG)
 ├── results/                # Experimental results (CSV exports)
-├── paper/                  # LaTeX paper source
-│   └── IEEE_PAPER_TEMPLATE.tex
+├── paper/                  
 └── requirements.txt        # Python dependencies
 ```
 
@@ -280,23 +279,6 @@ To reproduce the experimental results from the paper:
 4. Evaluate response quality metrics using `evaluate_response_quality.py` (optional)
 5. Export results from WandB (or use provided export)
 
-### Verification
-
-To verify your results match the paper:
-
-1. Check F1 scores are within ±0.02 of reported values
-2. Verify retrieval recall trends match Figure 2
-3. Confirm latency values are in expected ranges
-4. Compare tool efficiency scores
-
-### Notes
-
-- Results may vary slightly due to API response variations
-- Latency depends on API response times and network conditions
-- Tool efficiency calculations depend on expected tool heuristics
-- Response quality metrics (BLEU, ROUGE, BARTScore) are calculated separately using `evaluate_response_quality.py` on the saved JSON results
-- Both LangChain and LlamaIndex tool-use scripts save results in the same format for compatibility
-
 ## Troubleshooting
 
 ### Common Issues
@@ -310,52 +292,8 @@ To verify your results match the paper:
 7. **Vector Store Errors**: Rebuild vector stores if corrupted
 8. **Figure Generation Errors**: Ensure CSV file path is correct
 
-### Getting Help
-
-- Check existing issues on GitHub
-- Review the paper for methodology details
-- Open a new issue with detailed error messages
-
-## Contributing
-
-Thank you for your interest in contributing to this project!
-
-### Getting Started
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Commit your changes (`git commit -m 'Add some amazing feature'`)
-5. Push to the branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-### Code Style
-
-- Follow PEP 8 style guidelines
-- Use meaningful variable and function names
-- Add docstrings to functions and classes
-- Include comments for complex logic
-
-### Testing
-
-Before submitting a PR, please ensure:
-- All existing tests pass
-- New code includes appropriate tests
-- Code is properly formatted
 
 ### Questions?
 
 Feel free to open an issue for any questions or concerns.
 
-## Citation
-
-If you use this code or benchmark, please cite:
-
-```bibtex
-@inproceedings{ghosh2024legalrag,
-  title={Framework Comparison for Legal RAG Systems: LangChain vs LlamaIndex},
-  author={Ghosh Dastidar, Triyasha},
-  booktitle={IEEE Conference},
-  year={2024}
-}
-```
