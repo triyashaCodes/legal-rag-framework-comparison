@@ -2,9 +2,21 @@
 
 This repository contains the code, data, and results for the paper "Framework Comparison for Legal RAG Systems: LangChain vs LlamaIndex" evaluating both frameworks on the CUAD-RAG benchmark.
 
-## Overview
+## Project Description
 
-This study provides a systematic comparison of LangChain and LlamaIndex frameworks for legal Retrieval-Augmented Generation (RAG) systems, evaluating both simple RAG pipelines and tool-use agents on the Contract Understanding Atticus Dataset (CUAD).
+This study provides a systematic comparison of LangChain and LlamaIndex frameworks for legal Retrieval-Augmented Generation (RAG) systems. We evaluate both simple RAG pipelines and tool-use agents on the Contract Understanding Atticus Dataset (CUAD), a benchmark for legal document understanding.
+
+**Key Research Questions:**
+- How do LangChain and LlamaIndex compare in terms of retrieval quality and answer accuracy?
+- What are the latency trade-offs between the two frameworks?
+- How effective are tool-use agents in legal document analysis tasks?
+- Which framework is better suited for production legal RAG systems?
+
+**Methodology:**
+- Evaluation on CUAD benchmark with legal contract queries
+- Comparison of retrieval recall, F1 scores, latency, and tool efficiency
+- Analysis of both simple RAG and tool-use agent approaches
+- Comprehensive metrics including BLEU, ROUGE, and BARTScore for answer quality assessment
 
 ## Repository Structure
 
@@ -227,7 +239,46 @@ This script calculates:
 
 ## Results
 
-Experimental results are saved in the `results/` directory:
+### Performance Comparison Table
+
+| Framework | F1 Score | Retrieval Recall@k | Avg Latency (s) | Tool Efficiency |
+|-----------|----------|-------------------|-----------------|-----------------|
+| **LangChain** | 0.317-0.335 | 0.309-0.342 | 4.84-4.89 | 0.841-0.876 |
+| **LlamaIndex** | 0.319-0.341 | 0.516-0.795 | 8.49-30.88 | 0.935-0.957 |
+
+### Key Findings and Observations
+
+1. **Retrieval Quality Trade-off:**
+   - **LangChain** achieves lower latency (4.8-4.9s) but has lower retrieval recall (0.31-0.34)
+   - **LlamaIndex** shows superior retrieval recall (0.52-0.80) but at the cost of higher latency (8.5-30.9s)
+   - This suggests LlamaIndex's retrieval mechanism is more thorough but computationally expensive
+
+2. **Tool Efficiency:**
+   - **LlamaIndex** demonstrates significantly better tool efficiency (0.94-0.96) compared to LangChain (0.84-0.88)
+   - LlamaIndex agents are more effective at selecting and using the appropriate tools for given tasks
+
+3. **Answer Quality (F1 Score):**
+   - Both frameworks achieve similar F1 scores (0.32-0.34), indicating comparable answer quality
+   - The difference in retrieval recall doesn't translate to a proportional difference in final answer quality
+
+4. **Latency Analysis:**
+   - LangChain's consistent low latency makes it suitable for real-time applications
+   - LlamaIndex's variable latency (8.5-30.9s) suggests it may be better suited for batch processing or scenarios where accuracy is prioritized over speed
+
+### Visualization Figures
+
+The following figures are available in the `figures/` directory:
+
+- **Figure 2: Retrieval Recall** (`figure_2_retrieval_recall.png`) - Comparison of retrieval recall@k metrics across frameworks
+- **Figure 3: Latency vs Recall Trade-off** (`figure_3_tradeoff.png`) - Visualization of the latency-recall trade-off
+- **Figure A1: Answer Quality Metrics** (`figure_a1_answer_metrics.png`) - F1 score and other answer quality metrics
+- **Figure A2: Tool Usage** (`figure_a2_tool_usage.png`) - Breakdown of tool usage patterns
+- **Figure A3: Latency Distribution** (`figure_a3_latency.png`) - Latency distribution across test cases
+- **Figure A4: Tool Efficiency** (`figure_a4_tool_efficiency.png`) - Tool efficiency comparison
+
+### Experimental Results Files
+
+Results are saved in the `results/` directory:
 
 **Tool-Use Evaluation Results:**
 - `langchain_tool_use_eval_detailed.json` - LangChain detailed results (JSON)
@@ -241,26 +292,14 @@ Experimental results are saved in the `results/` directory:
 
 **Other Results:**
 - `wandb_export_2025-12-15T21_16_49.900-05_00.csv` - Complete results export (if using WandB)
-- `figures/` - Generated visualization figures
 
-### Key Findings
+### WandB Project
 
-- **LangChain**: Lower latency (4.8-4.9s) but lower retrieval recall (0.31-0.34)
-- **LlamaIndex**: Higher latency (8.5-30.9s) but superior retrieval recall (0.52-0.80) and tool efficiency (0.94-0.96)
+All experiments are tracked and visualized on WandB. View the public project board:
 
-### Expected Performance Metrics
+🔗 **[View WandB Project Dashboard](https://wandb.ai/tg2936-columbia-university/legal-rag-evaluation/reports/Run-report--VmlldzoxNTQxMTg4OQ?accessToken=3wuw88uelrto8h6scefkvejnb4wcxgtvcq04s7yb9xsi415msvusiaqymxkdkxs0)**
 
-**LangChain Tool-Use:**
-- F1 Score: 0.317-0.335
-- Retrieval Recall@k: 0.309-0.342
-- Avg Latency: 4.84-4.89s
-- Tool Efficiency: 0.841-0.876
-
-**LlamaIndex Tool-Use:**
-- F1 Score: 0.319-0.341
-- Retrieval Recall@k: 0.516-0.795
-- Avg Latency: 8.49-30.88s
-- Tool Efficiency: 0.935-0.957
+**I do not have the option to make the project public and hence, I have shared the run-report in WandB. I can add to the team to ensure visibility is given for the dashboard.**
 
 ### Runtime Estimates
 
