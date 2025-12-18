@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Data (large files)
+data/corpus/
+data/vectorstores/
+data/raw_data/
+# But keep directory structure
+!data/corpus/.gitkeep
+!data/corpus/**/.gitkeep
+!data/vectorstores/.gitkeep
+!data/raw_data/.gitkeep
+
+# Results and outputs
+results/*.json
+results/*.csv
+!results/wandb_export_*.csv
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# WandB
+wandb/
+
+# Environment
+.env
+.env.local
+# Keep .env.example for reference
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Figures (keep PDFs, ignore large PNGs if needed)
+# Uncomment if PNGs are too large
+# figures/*.png
+
