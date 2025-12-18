@@ -239,12 +239,51 @@ This script calculates:
 
 ## Results
 
-### Performance Comparison Table
+### Performance Comparison Tables
+
+#### Table 1: Overall Performance Metrics
 
 | Framework | F1 Score | Retrieval Recall@k | Avg Latency (s) | Tool Efficiency |
 |-----------|----------|-------------------|-----------------|-----------------|
 | **LangChain** | 0.317-0.335 | 0.309-0.342 | 4.84-4.89 | 0.841-0.876 |
 | **LlamaIndex** | 0.319-0.341 | 0.516-0.795 | 8.49-30.88 | 0.935-0.957 |
+
+#### Table 2: Performance by Recall@k Values
+
+| Framework | Recall@k=10 | Recall@k=20 | Recall@k=100 | F1 Score (k=10) | F1 Score (k=20) | F1 Score (k=100) | Avg Latency (s) |
+|-----------|-------------|-------------|--------------|-----------------|-----------------|------------------|-----------------|
+| **LangChain** | 0.309 | 0.342 | 0.342 | 0.317 | 0.335 | 0.335 | 4.84-4.89 |
+| **LlamaIndex** | 0.516 | 0.656 | 0.795 | 0.319 | 0.341 | 0.333 | 8.49-30.88 |
+
+#### Table 3: Tool Usage Statistics
+
+| Framework | Extract Dates Tool Usage | RAG QA Tool Usage | Tool Efficiency (k=10) | Tool Efficiency (k=20) | Tool Efficiency (k=100) |
+|-----------|-------------------------|-------------------|------------------------|------------------------|-------------------------|
+| **LangChain** | 499 (k=10), 474 (k=20), 466 (k=100) | 3,631 (k=10), 3,596 (k=20), 3,612 (k=100) | 0.841 | 0.873 | 0.876 |
+| **LlamaIndex** | 255 (k=10), 121 (k=20), 122 (k=100) | 1,806 (k=10), 931 (k=20), 945 (k=100) | 0.935 | 0.950 | 0.957 |
+
+#### Table 4: Detailed Latency Analysis
+
+| Framework | Min Latency (s) | Max Latency (s) | Avg Latency (s) | Latency Range |
+|-----------|----------------|----------------|-----------------|---------------|
+| **LangChain** | 4.84 | 4.89 | 4.86 | 0.05 (very consistent) |
+| **LlamaIndex** | 8.49 | 30.88 | 16.30 | 22.39 (highly variable) |
+
+#### Table 5: Test Case Statistics
+
+| Framework | Total Test Cases | Evaluation Time (hours) | Runtime (s) |
+|-----------|------------------|------------------------|-------------|
+| **LangChain** | 4,042 | ~5.5 | 19,641-19,757 |
+| **LlamaIndex** | 1,000-2,000 | ~2.7-8.6 | 9,664-31,023 |
+
+#### Table 6: Response Quality Metrics (BLEU, ROUGE, BARTScore)
+
+| Framework | F1 Score | BLEU | ROUGE-1 | ROUGE-2 | ROUGE-L | BARTScore |
+|-----------|----------|------|---------|---------|---------|-----------|
+| **LangChain** | 0.317-0.335 | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* |
+| **LlamaIndex** | 0.319-0.341 | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* | *Run `evaluate_response_quality.py`* |
+
+*Note: Detailed BLEU, ROUGE, and BARTScore metrics are calculated by running `evaluate_response_quality.py` on the evaluation results JSON files. See the Usage section for instructions.*
 
 ### Key Findings and Observations
 
@@ -267,14 +306,41 @@ This script calculates:
 
 ### Visualization Figures
 
-The following figures are available in the `figures/` directory:
+#### Figure 2: Retrieval Recall Comparison
 
-- **Figure 2: Retrieval Recall** (`figure_2_retrieval_recall.png`) - Comparison of retrieval recall@k metrics across frameworks
-- **Figure 3: Latency vs Recall Trade-off** (`figure_3_tradeoff.png`) - Visualization of the latency-recall trade-off
-- **Figure A1: Answer Quality Metrics** (`figure_a1_answer_metrics.png`) - F1 score and other answer quality metrics
-- **Figure A2: Tool Usage** (`figure_a2_tool_usage.png`) - Breakdown of tool usage patterns
-- **Figure A3: Latency Distribution** (`figure_a3_latency.png`) - Latency distribution across test cases
-- **Figure A4: Tool Efficiency** (`figure_a4_tool_efficiency.png`) - Tool efficiency comparison
+![Retrieval Recall](figures/figure_2_retrieval_recall.png)
+
+*Comparison of retrieval recall@k metrics across frameworks and different k values*
+
+#### Figure 3: Latency vs Recall Trade-off
+
+![Latency vs Recall Trade-off](figures/figure_3_tradeoff.png)
+
+*Visualization of the latency-recall trade-off between LangChain and LlamaIndex*
+
+#### Figure A1: Answer Quality Metrics
+
+![Answer Quality Metrics](figures/figure_a1_answer_metrics.png)
+
+*F1 score and other answer quality metrics comparison*
+
+#### Figure A2: Tool Usage Patterns
+
+![Tool Usage](figures/figure_a2_tool_usage.png)
+
+*Breakdown of tool usage patterns across frameworks*
+
+#### Figure A3: Latency Distribution
+
+![Latency Distribution](figures/figure_a3_latency.png)
+
+*Latency distribution across test cases for both frameworks*
+
+#### Figure A4: Tool Efficiency
+
+![Tool Efficiency](figures/figure_a4_tool_efficiency.png)
+
+*Tool efficiency comparison between LangChain and LlamaIndex*
 
 ### Experimental Results Files
 
